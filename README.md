@@ -214,5 +214,5 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 <p align="center">
-    Developed with ❤️ by [Your Name](https://github.com/your-username)
+    Developed with ❤️ by Masih Balali (https://github.com/Masihbalali)
 </p>
