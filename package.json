@@ -15,7 +15,10 @@
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
-    "react-plotly.js": "^2.6.0"
+    "react-markdown": "^9.0.1",
+    "react-plotly.js": "^2.6.0",
+    "react-syntax-highlighter": "^15.6.1",
+    "remark-gfm": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

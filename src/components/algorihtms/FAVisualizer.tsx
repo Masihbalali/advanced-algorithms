@@ -13,6 +13,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { Button } from '@material-tailwind/react';
 
 // Register Chart.js components
 ChartJS.register(
@@ -57,6 +58,8 @@ const FAVisualizer: React.FC = () => {
     const [bestPosition, setBestPosition] = useState<number[]>([]);
     const [currentIteration, setCurrentIteration] = useState<number>(0);
     const [isRunning, setIsRunning] = useState<boolean>(false);
+    const inputContainerStyles = "flex justify-center items-center flex-col"
+    const inputStyles = "text-black w-14 rounded text-center"
 
     // References to store mutable variables without causing re-renders
     const positionsRef = useRef<number[][]>([]);
@@ -338,7 +341,7 @@ const FAVisualizer: React.FC = () => {
             <h1>Firefly Algorithm (FA) Visualization</h1>
 
             {/* Input Controls */}
-            <div style={{ marginBottom: '20px' }}>
+            <div className=' flex justify-around items-center' style={{ marginBottom: '20px' }}>
                 <h2>FA Parameters</h2>
                 <form
                     onSubmit={(e: FormEvent<HTMLFormElement>) => {
@@ -347,11 +350,11 @@ const FAVisualizer: React.FC = () => {
                             startFA();
                         }
                     }}
-                    style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}
-                >
-                    <div>
+                    style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="numFireflies">Number of Fireflies:</label><br />
                         <input
+                            className={inputStyles}
                             type="number"
                             id="numFireflies"
                             name="numFireflies"
@@ -363,9 +366,10 @@ const FAVisualizer: React.FC = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="dimensions">Dimensions:</label><br />
                         <input
+                            className={inputStyles}
                             type="number"
                             id="dimensions"
                             name="dimensions"
@@ -377,9 +381,10 @@ const FAVisualizer: React.FC = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="maxIterations">Max Iterations:</label><br />
                         <input
+                            className={inputStyles}
                             type="number"
                             id="maxIterations"
                             name="maxIterations"
@@ -391,9 +396,10 @@ const FAVisualizer: React.FC = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="alpha">Randomness (alpha):</label><br />
                         <input
+                            className={inputStyles}
                             type="number"
                             id="alpha"
                             name="alpha"
@@ -406,9 +412,10 @@ const FAVisualizer: React.FC = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="beta0">Initial Attractiveness (beta0):</label><br />
                         <input
+                            className={inputStyles}
                             type="number"
                             id="beta0"
                             name="beta0"
@@ -421,9 +428,10 @@ const FAVisualizer: React.FC = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="gamma">Light Absorption (gamma):</label><br />
                         <input
+                            className={inputStyles}
                             type="number"
                             id="gamma"
                             name="gamma"
@@ -437,34 +445,44 @@ const FAVisualizer: React.FC = () => {
                         />
                     </div>
                     <div style={{ alignSelf: 'flex-end' }}>
-                        <button type="submit" disabled={isRunning} style={{ padding: '10px 20px', fontSize: '16px' }}>
+                        <Button color='green' type="submit" disabled={isRunning} style={{ padding: '10px 20px', fontSize: '16px' }}>
                             Start FA
-                        </button>
-                        <button
+                        </Button>
+
+                        <Button
                             type="button"
+                            color='green'
                             onClick={stopFA}
                             disabled={!isRunning}
                             style={{ padding: '10px 20px', fontSize: '16px', marginLeft: '10px' }}
                         >
                             Stop FA
-                        </button>
+                        </Button>
                     </div>
                 </form>
             </div>
 
             {/* Charts */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-                {/* Line Chart */}
-                <div>
-                    <Line data={lineChartData} options={lineChartOptions} />
-                </div>
+            <div className='p-20' style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+                <div className='flex flex-row gap-5 w-full'>
 
-                {/* 2D Scatter Plot */}
-                {params.dimensions >= 2 && (
-                    <div>
-                        <Scatter data={scatter2DData} options={scatter2DOptions} />
+
+                    {/* Line Chart */}
+                    <div className='w-full'>
+                        <Line data={lineChartData} options={lineChartOptions} />
                     </div>
-                )}
+
+                    {/* 2D Scatter Plot */}
+                    <div className='w-full'>
+
+                        {params.dimensions >= 2 && (
+                            <div>
+                                <Scatter data={scatter2DData} options={scatter2DOptions} />
+                            </div>
+                        )}
+                    </div>
+
+                </div>
 
                 {/* 3D Scatter Plot */}
                 {params.dimensions === 3 && (

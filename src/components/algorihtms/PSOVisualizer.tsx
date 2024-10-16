@@ -60,13 +60,13 @@ const PSOVisualizer = () => {
     const shouldStopRef = useRef(false);
 
     // Define the Rastrigin function
-    const rastrigin = (X) => {
+    const rastrigin = (X: any) => {
         const A = 10;
-        return A * X.length + X.reduce((sum, x) => sum + (x ** 2 - A * Math.cos(2 * Math.PI * x)), 0);
+        return A * X.length + X.reduce((sum: any, x: any) => sum + (x ** 2 - A * Math.cos(2 * Math.PI * x)), 0);
     };
 
     // Handle input changes
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         const { name, value } = e.target;
         setParams(prev => ({
             ...prev,

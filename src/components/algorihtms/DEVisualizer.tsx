@@ -13,6 +13,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { Button } from '@material-tailwind/react';
 
 // Register Chart.js components
 ChartJS.register(
@@ -61,6 +62,9 @@ const DEVisualizer: React.FC = () => {
     const [bestSolution, setBestSolution] = useState<Individual | null>(null);
     const [currentIteration, setCurrentIteration] = useState<number>(0);
     const [isRunning, setIsRunning] = useState<boolean>(false);
+    const inputContainerStyles = "flex justify-center items-center flex-col"
+    const inputStyles = "text-black w-14 rounded text-center"
+
 
     // References to store mutable variables without causing re-renders
     const populationRef = useRef<Individual[]>([]);
@@ -346,7 +350,7 @@ const DEVisualizer: React.FC = () => {
             <h1>Differential Evolution (DE) Visualization</h1>
 
             {/* Input Controls */}
-            <div style={{ marginBottom: '20px' }}>
+            <div className=' flex justify-around items-center' style={{ marginBottom: '20px' }}>
                 <h2>DE Parameters</h2>
                 <form
                     onSubmit={(e: FormEvent<HTMLFormElement>) => {
@@ -357,10 +361,10 @@ const DEVisualizer: React.FC = () => {
                     }}
                     style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}
                 >
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="populationSize">Population Size:</label><br />
                         <input
-                            className='text-black'
+                            className={inputStyles}
                             type="number"
                             id="populationSize"
                             name="populationSize"
@@ -372,10 +376,10 @@ const DEVisualizer: React.FC = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="dimensions">Dimensions:</label><br />
                         <input
-                            className='text-black'
+                            className={inputStyles}
                             type="number"
                             id="dimensions"
                             name="dimensions"
@@ -387,10 +391,10 @@ const DEVisualizer: React.FC = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="maxIterations">Max Iterations:</label><br />
                         <input
-                            className='text-black'
+                            className={inputStyles}
                             type="number"
                             id="maxIterations"
                             name="maxIterations"
@@ -402,10 +406,10 @@ const DEVisualizer: React.FC = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="mutationFactor">Mutation Factor (F):</label><br />
                         <input
-                            className='text-black'
+                            className={inputStyles}
                             type="number"
                             id="mutationFactor"
                             name="mutationFactor"
@@ -418,10 +422,10 @@ const DEVisualizer: React.FC = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className={inputContainerStyles}>
                         <label htmlFor="crossoverRate">Crossover Rate (CR):</label><br />
                         <input
-                            className='text-black'
+                            className={inputStyles}
                             type="number"
                             id="crossoverRate"
                             name="crossoverRate"
@@ -435,35 +439,44 @@ const DEVisualizer: React.FC = () => {
                         />
                     </div>
                     <div style={{ alignSelf: 'flex-end' }}>
-                        <button type="submit" disabled={isRunning} style={{ padding: '10px 20px', fontSize: '16px' }}>
+                        <Button
+                            color='green'
+                            type="submit"
+                            disabled={isRunning}
+                            style={{ padding: '10px 20px', fontSize: '16px' }}>
                             Start DE
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                            color='green'
                             type="button"
                             onClick={stopDE}
                             disabled={!isRunning}
                             style={{ padding: '10px 20px', fontSize: '16px', marginLeft: '10px' }}
                         >
                             Stop DE
-                        </button>
+                        </Button>
                     </div>
                 </form>
             </div>
 
             {/* Charts */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-                {/* Line Chart */}
-                <div>
-                    <Line data={lineChartData} options={lineChartOptions} />
-                </div>
+            <div className='p-20' style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+                <div className='flex flex-row gap-5 w-full'>
 
-                {/* 2D Scatter Plot */}
-                {params.dimensions >= 2 && (
-                    <div>
-                        <Scatter data={scatter2DData} options={scatter2DOptions} />
+
+                    {/* Line Chart */}
+                    <div className='w-full'>
+                        <Line data={lineChartData} options={lineChartOptions} />
                     </div>
-                )}
-
+                    <div className='w-full'>
+                        {/* 2D Scatter Plot */}
+                        {params.dimensions >= 2 && (
+                            <div>
+                                <Scatter data={scatter2DData} options={scatter2DOptions} />
+                            </div>
+                        )}
+                    </div>
+                </div>
                 {/* 3D Scatter Plot */}
                 {params.dimensions === 3 && (
                     <div>
