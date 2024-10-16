@@ -78,7 +78,7 @@ export function DrawerComponent() {
                 <List>
 
                     {lists.map(({ path, label }, index) => (
-                        <Link key={index} href={path}>
+                        <Link key={index} href={path} onClick={closeDrawer}>
                             <ListItem>
                                 {/* <ListItemPrefix>Algo</ListItemPrefix> */}
                                 {label}
