@@ -25,10 +25,12 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className={"bg-gray-700 w-full h-14 flex justify-end items-center p-5"}>
+        <div className={"bg-gray-700 w-full z-[1000] fixed top-0 h-14 flex justify-end items-center p-5"}>
           <DrawerComponent />
         </div>
-        {children}
+        <div className="mt-14">
+          {children}
+        </div>
       </body>
     </html>
   );
