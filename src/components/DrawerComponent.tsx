@@ -41,6 +41,10 @@ const lists = [
         label: "Bat",
     },
     {
+        path: "/genetic",
+        label: "genetic",
+    },
+    {
         path: "/wolf",
         label: "Wolf",
         children: [
