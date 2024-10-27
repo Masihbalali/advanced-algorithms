@@ -61,7 +61,7 @@ const FireflyDoc: React.FC = () => {
                     <h3 className="text-xl font-semibold mt-4 mb-2">Imports and Dependencies</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`import React, { useState, useEffect, useRef, ChangeEvent, FormEvent } from 'react';
+                            {`import React, { useState, useEffect, useRef, ChangeEvent, FormEvent } from 'react';
 import { Line, Scatter } from 'react-chartjs-2';
 import Plot from 'react-plotly.js';
 import {
@@ -93,7 +93,7 @@ import { Button } from '@material-tailwind/react';`}
                     <h3 className="text-xl font-semibold mt-4 mb-2">TypeScript Interfaces</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`interface FAParams {
+                            {`interface FAParams {
     numFireflies: number;
     dimensions: 2 | 3;
     maxIterations: number;
@@ -138,7 +138,7 @@ interface Firefly {
                     <h3 className="text-xl font-semibold mt-4 mb-2">Rastrigin Function</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`const rastrigin = (X: number[]): number => {
+                            {`const rastrigin = (X: number[]): number => {
     const A = 10;
     return A * X.length + X.reduce((sum, x) => sum + (x ** 2 - A * Math.cos(2 * Math.PI * x)), 0);
 };`}
@@ -153,7 +153,7 @@ interface Firefly {
                     <h3 className="text-xl font-semibold mt-4 mb-2">Handling Input Changes</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+                            {`const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setParams(prev => ({
         ...prev,
@@ -173,7 +173,7 @@ interface Firefly {
                     <h3 className="text-xl font-semibold mt-4 mb-2">Initialization (<code>initializeFA</code>)</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`const initializeFA = (): void => {
+                            {`const initializeFA = (): void => {
     const { numFireflies, dimensions } = params;
 
     // Initialize firefly positions
@@ -215,7 +215,7 @@ interface Firefly {
                     <h3 className="text-xl font-semibold mt-4 mb-2">FA Iteration Step (<code>faStep</code>)</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`const faStep = (): void => {
+                            {`const faStep = (): void => {
     const { numFireflies, dimensions, alpha, beta0, gamma } = params;
     const numF = numFireflies;
 
@@ -275,7 +275,7 @@ interface Firefly {
                     <h3 className="text-xl font-semibold mt-4 mb-2">Animation Loop (<code>animateFA</code>)</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`const animateFA = (): void => {
+                            {`const animateFA = (): void => {
     if (currentIteration < params.maxIterations && !shouldStopRef.current) {
         faStep();
         animationFrameRef.current = setTimeout(animateFA, 100); // Adjust delay for animation speed
@@ -300,7 +300,7 @@ interface Firefly {
                     <h3 className="text-xl font-semibold mt-4 mb-2">Start and Stop Functions</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`// Start FA
+                            {`// Start FA
 const startFA = (): void => {
     if (!isRunning) {
         initializeFA();
@@ -334,7 +334,7 @@ const stopFA = (): void => {
                 <h2 className="text-2xl font-semibold mt-6 mb-4">Effect Hooks</h2>
                 <pre className="bg-gray-100 p-4 rounded overflow-auto">
                     <SyntaxHighlighter language="typescript" style={coy}>
-{`useEffect(() => {
+                        {`useEffect(() => {
     if (isRunning) {
         animateFA();
     }
@@ -347,7 +347,7 @@ const stopFA = (): void => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [isRunning, currentIteration]);`}
-                        </SyntaxHighlighter>
+                    </SyntaxHighlighter>
                 </pre>
                 <p>
                     The <code>useEffect</code> hook monitors the <code>isRunning</code> and <code>currentIteration</code> states to manage the animation loop. It ensures that the algorithm starts animating when triggered and cleans up any pending timeouts when the component unmounts or the animation stops.
@@ -361,7 +361,7 @@ const stopFA = (): void => {
                     <h3 className="text-xl font-semibold mt-4 mb-2">Line Chart Data</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`const lineChartData = {
+                            {`const lineChartData = {
     labels: Array.from({ length: fitnessHistory.length }, (_, i) => i),
     datasets: [
         {
@@ -413,7 +413,7 @@ const lineChartOptions = {
                     <h3 className="text-xl font-semibold mt-4 mb-2">2D Scatter Plot Data</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`const scatter2DData = {
+                            {`const scatter2DData = {
     datasets: [
         {
             label: 'Fireflies',
@@ -470,7 +470,7 @@ const scatter2DOptions = {
                     <h3 className="text-xl font-semibold mt-4 mb-2">3D Scatter Plot Data</h3>
                     <pre className="bg-gray-100 p-4 rounded overflow-auto">
                         <SyntaxHighlighter language="typescript" style={coy}>
-{`const plotlyData: any[] = [
+                            {`const plotlyData: any[] = [
     {
         x: positions.map(pos => pos[0]),
         y: positions.map(pos => pos[1]),
@@ -590,7 +590,7 @@ const plotlyLayout = {
                         <strong>Install Dependencies</strong>: Ensure that the required libraries are installed in your project.
                         <pre className="bg-gray-100 p-4 rounded overflow-auto mt-2">
                             <SyntaxHighlighter language="bash" style={coy}>
-{`npm install react-chartjs-2 chart.js react-plotly.js @material-tailwind/react react-syntax-highlighter`}
+                                {`npm install react-chartjs-2 chart.js react-plotly.js @material-tailwind/react react-syntax-highlighter`}
                             </SyntaxHighlighter>
                         </pre>
                     </li>
@@ -598,7 +598,7 @@ const plotlyLayout = {
                         <strong>Import and Use the Component</strong>: Import the <code>FAVisualizer</code> component and include it in your JSX.
                         <pre className="bg-gray-100 p-4 rounded overflow-auto mt-2">
                             <SyntaxHighlighter language="typescript" style={coy}>
-{`import FAVisualizer from './path-to-component/FAVisualizer';
+                                {`import FAVisualizer from './path-to-component/FAVisualizer';
 
 const App: React.FC = () => {
     return (

@@ -38,7 +38,18 @@ const lists = [
     },
     {
         path: "/bat",
-        label: "Bat",
+        label: "bat",
+        children: [
+            {
+                path: "/bat",
+                label: "bat",
+            },
+            {
+                path: "/bat/document",
+                label: "bat doc ",
+            },
+            // Add more nested items here if needed
+        ],
     },
     {
         path: "/cuckoo",
