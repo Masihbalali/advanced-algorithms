@@ -13,28 +13,36 @@ import Link from "next/link";
 // import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
 const lists = [
-    {
-        path: "/pso",
-        label: "Pso",
-    },
+
     {
         path: "/firefly",
-        label: "Psfireflyo",
+        label: "firefly",
         children: [
             {
                 path: "/firefly",
-                label: "Psfireflyo",
+                label: "firefly",
             },
             {
                 path: "/firefly/document",
-                label: "Psfireflyo ",
+                label: "document ",
             },
             // Add more nested items here if needed
         ],
     },
     {
         path: "/dev",
-        label: "Dev",
+        label: "DEV",
+        children: [
+            {
+                path: "/dev",
+                label: "Dev",
+            },
+            {
+                path: "/dev/document",
+                label: "Dev document ",
+            },
+            // Add more nested items here if needed
+        ],
     },
     {
         path: "/bat",
@@ -52,20 +60,8 @@ const lists = [
         ],
     },
     {
-        path: "/cuckoo",
-        label: "cuckoo",
-    },
-    {
-        path: "/ica",
-        label: "ica",
-    },
-    {
-        path: "/genetic",
-        label: "genetic",
-    },
-    {
         path: "/wolf",
-        label: "Wolf",
+        label: "other",
         children: [
             {
                 path: "/wolf",
@@ -75,7 +71,23 @@ const lists = [
                 path: "/wolf/document",
                 label: "Wolf Document",
             },
-            // Add more nested items here if needed
+            {
+                path: "/cuckoo",
+                label: "cuckoo",
+            },
+            {
+                path: "/ica",
+                label: "ica",
+            },
+            {
+                path: "/genetic",
+                label: "genetic",
+            },
+            {
+                path: "/pso",
+                label: "Pso",
+            },
+
         ],
     },
     // Add more main items and their children as needed
