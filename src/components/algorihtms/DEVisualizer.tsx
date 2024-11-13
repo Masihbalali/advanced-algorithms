@@ -368,7 +368,7 @@ const DEVisualizer: React.FC = () => {
                             type="number"
                             id="populationSize"
                             name="populationSize"
-                            min="10"
+                            // min="10"
                             max="1000"
                             value={params.populationSize}
                             onChange={handleChange}

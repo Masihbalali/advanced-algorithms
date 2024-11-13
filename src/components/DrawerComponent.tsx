@@ -24,7 +24,7 @@ const lists = [
             },
             {
                 path: "/firefly/document",
-                label: "document ",
+                label: "firefly document ",
             },
             // Add more nested items here if needed
         ],
@@ -54,7 +54,7 @@ const lists = [
             },
             {
                 path: "/bat/document",
-                label: "bat doc ",
+                label: "bat document ",
             },
             // Add more nested items here if needed
         ],

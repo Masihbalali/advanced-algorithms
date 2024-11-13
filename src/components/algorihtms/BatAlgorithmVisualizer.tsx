@@ -49,7 +49,7 @@ interface Bat {
 const BatAlgorithmVisualizer: React.FC = () => {
     const defaultParams: BatParams = {
         populationSize: 30,
-        dimensions: 3, 
+        dimensions: 3,
         maxIterations: 100,
         frequencyMin: 0,
         frequencyMax: 2,
@@ -66,6 +66,8 @@ const BatAlgorithmVisualizer: React.FC = () => {
     const [bestSolution, setBestSolution] = useState<Bat | null>(null);
     const [currentIteration, setCurrentIteration] = useState<number>(0);
     const [isRunning, setIsRunning] = useState<boolean>(false);
+    const inputContainerStyles = "flex justify-center items-center flex-col"
+    const inputStyles = "text-black w-14 rounded text-center"
 
     const populationRef = useRef<Bat[]>([]);
     const animationFrameRef = useRef<NodeJS.Timeout | null>(null);
@@ -159,7 +161,7 @@ const BatAlgorithmVisualizer: React.FC = () => {
     const animateBat = (): void => {
         if (currentIteration < params.maxIterations && !shouldStopRef.current) {
             batStep();
-            animationFrameRef.current = setTimeout(animateBat, 100); 
+            animationFrameRef.current = setTimeout(animateBat, 100);
         } else {
             setIsRunning(false);
         }
@@ -245,30 +247,33 @@ const BatAlgorithmVisualizer: React.FC = () => {
         <div className="flex flex-col items-center p-8">
             <h2 className="text-2xl font-bold mb-4">Bat Algorithm (الگوریتم خفاش)</h2>
 
-            <form onSubmit={(e: FormEvent<HTMLFormElement>) => e.preventDefault()} className="mb-4">
-                <div className="grid grid-cols-2 gap-4">
+            <form onSubmit={(e: FormEvent<HTMLFormElement>) => e.preventDefault()} className="mb-4 flex flex-col justify-center items-center">
+                <div className="flex flex-row gap-4">
                     {Object.entries(params).map(([key, value]) => (
                         <div key={key} className="flex flex-col">
                             <label htmlFor={key} className="font-semibold">{key}</label>
-                            <input type="number" name={key} value={value} onChange={handleChange} className="border p-2" />
+                            <input type="number" name={key} value={value} onChange={handleChange} className={inputStyles} />
                         </div>
                     ))}
                 </div>
-                <Button onClick={startBat} color="green" className="mt-4" disabled={isRunning}>Start</Button>
-                <Button onClick={stopBat} color="red" className="mt-4 ml-2" disabled={!isRunning}>Stop</Button>
+                <div>
+                    <Button onClick={startBat} color="green" className="mt-4" disabled={isRunning}>Start</Button>
+                    <Button onClick={stopBat} color="red" className="mt-4 ml-2" disabled={!isRunning}>Stop</Button>
+                </div>
             </form>
 
             <div className="flex flex-col w-full">
-                <div className="mb-8">
-                    <Line data={lineChartData} options={lineChartOptions} />
-                </div>
+                <div className='flex flex-row'>
+                    <div className="mb-8 w-full">
+                        <Line data={lineChartData} options={lineChartOptions} />
+                    </div>
 
-                <div className="mb-8">
-                    {params.dimensions === 2 ? (
+                    <div className="mb-8 w-full">
                         <Scatter data={scatter2DData} options={scatter2DOptions} />
-                    ) : (
-                        <Plot data={plotlyData} layout={{ title: 'Bat Population Positions (3D)', autosize: true }} />
-                    )}
+                    </div>
+                </div>
+                <div className="mb-8 w-full">
+                    <Plot data={plotlyData} layout={{ title: 'Bat Population Positions (3D)', autosize: true }} />
                 </div>
             </div>
         </div>
