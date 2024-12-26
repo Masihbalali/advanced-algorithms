@@ -3,6 +3,7 @@ export default function Bat() {
     return (
         <>
             <BatAlgorithmVisualizer />
+            {/* Comment for test */}
         </>
     )
 }
